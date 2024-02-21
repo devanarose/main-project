@@ -1,0 +1,103 @@
+{% include 'adminheader.html'%}
+<html>
+    <body>
+      <section class="w3l-main-slider position-relative" id="home">
+        <div class="companies20-content">
+            <!-- <div class="owl-one owl-carousel owl-theme"> -->
+                <div class="item">
+                    <li>
+                        <div class="slider-info banner-view banner-top5 bg bg2">
+                            <div class="banner-info">
+                                <div class="container">
+                                    <div class="banner-info-bg text-center">
+                                      <center>
+                                        <form method="post">
+                                          <h2 style="color: white;"><i>SEARCH BOOKINGS</i></h2>
+                                          <br>
+                                          <table style="color: black;width: 100px">
+                                      
+                                        
+                                             <td style="color: white"><input type="date" name="daily" class="form-control" > DAILY </td>
+                                              <td  style="color: white"> <input type="month" name="monthly" class="form-control"> MONTHLY </td>
+                                              <td  style="color: white"> <input type="text" style="width: 250px;" name="customer" class="form-control" placeholder="Search by Customer"> CUSTOMER </td>
+                                            
+                                           <tr>
+          
+                                             <td align="center" colspan="5"><input type="submit" name="sale" class="btn btn-info" value="SEARCH"></td>
+                                            </tr>
+                                          
+                                      
+                                            </tr>
+                                          </table>
+                                        </form>
+                                      </center>
+                                
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </div></div>
+               
+                </section>
+                <center>
+                  <br>
+                  <h1><i>VIEW BOOKINGS</i></h1><br><br>
+                  <table class="table table-striped table-hover" style="width: 1400px;">
+                      <tr>
+                        <th>Slno</th>
+                        <th>Service</th>
+                        <th>UserName</th>
+                        <th>Booked Date</th>
+                        <th>Rate</th>
+                        <th>Time Slot</th>
+                        <th>Reporting Status</th>
+                        <th></th>
+                      </tr>
+                      {% for row in data['bookingview']%}
+
+                      <tr>
+                          <td>{{loop.index}}</td>
+                          <td><img src="/{{ row['s_image'] }}" width="50" height="50" alt=""></td>
+                          <td>{{ row['c_fname'] }} {{ row['c_lname'] }}</td>
+                          <td>{{ row['date'] }}</td>
+                          <td>{{ row['total_price'] }}</td>
+                          <td> {{ row['time_slot'] }}</td>
+                          {% if row['report'] == 'pending' %}
+                          <td><a style="width: 150px" class="btn btn-info" href="?action=report&ccid={{ row['cc_id'] }}"><b>Not Reported</b></a></td>  
+                          <td><a style="width: 150px" class="btn btn-info" href="?action=notreport&ccid={{ row['cc_id'] }}"><b>Reported</b></a></td>  
+                          {% else %}
+                          
+                          <td> {{ row['report'] }}</td>
+                          {% endif %}
+            
+                    </tr>
+                    {% endfor %}
+
+                      </table>
+                      <a style="width: 150px" class="btn btn-info" href="bookingrep"><b>Print Report</b></a><br><br>
+
+                      </center>
+       
+    </body>
+</html>
+
+{% include 'adminfooter.html'%}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(function() {
+        $("input[name='subcat_name']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+        });
+
+        $("input[name='subcat_desc']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z0-9()/. ]/g, ''));
+
+        });
+
+     });
+
+
+</script>

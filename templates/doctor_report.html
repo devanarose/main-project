@@ -1,0 +1,70 @@
+<body onload="printDiv()">
+    <div id="div_print" >
+        <center>
+            <link rel="stylesheet" href="static/assets/css/style-starter.css">
+            <font style="font-family:times new roman">
+            <h1 style="color: #3ccadd;"><b>MEDICK EYE HOSPITAL<b></h1>
+                <p>
+                    Medick Private Limited ,
+                    near panampilly park,
+                    kadavanthara 682020 <br><br>
+                          <strong>Phone:</strong> +911234567890<br> 
+                          <strong>Email:</strong> medick@mail.com<br> 
+                        </p> 
+            <h1 style="padding-top: 30px;font-size: 40px;">DOCTOR REPORT</h1><br>`
+            <!-- <h1>View Sales</h1> -->
+<table border=1 class="table table-secondary table-striped " style="width: 1000px;color: black;background:white;opacity: 0.85;">
+    <tr align="left">
+		
+        <TH>NAME</TH>
+		<th>DOB</th>
+		<th>SPECIALIZATION</th>
+		<th>STARTING TIME</th>
+		<th>ENDING TIME</th>
+		<th>FEES</th>
+		<th>HOUSENAME</th>
+		<th>DISTRICT</th>
+		<th>PIN</th>
+		<th>GENDER</th>
+		<th>PHONE</th>
+		<th>NOP</th>
+		
+		
+                
+                
+            </tr>
+            
+            {% for row in data['doctorview']%}
+            <tr>
+                <td>{{row['doc_name']}}</td>
+                <td>{{row['doc_dob']}}</td>
+                <td>{{row['doc_specialization']}}</td>
+                
+                <td>{{row['st_slot']}}</td>
+                <td>{{row['et_slot']}}</td>
+                <td>{{row['fees']}}</td>
+                <td>{{row['doc_hname']}}</td>
+                <td>{{row['doc_district']}}</td>
+                <td>{{row['doc_pin']}}</td>
+                <td>{{row['doc_gender']}}</td>
+                <td>{{row['doc_phno']}}</td>
+                <td>{{row['max_p']}}</td>
+            {% endfor %}
+
+
+
+
+
+
+
+
+
+<script> 
+    function printDiv() { 
+      var divContents = document.getElementById("div_print").innerHTML; 
+      var a = window.open('', '', 'height=500, width=500'); 
+      a.document.write(divContents); 
+      a.document.close(); 
+      a.print(); 
+    } 
+  </script>

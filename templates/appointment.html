@@ -1,0 +1,208 @@
+{% include 'patientheader.html'%}
+
+<section class="w3l-content-3 py-5">
+    <!-- /content-6-section -->
+    <div class="content-3-info py-3">
+      <div class="container py-lg-4">
+        <div class="row appointment-formw3">
+          <div class="col-lg-6 welcome-left">
+            
+            <br><br><br><br><br><br>
+            <h6 class="title-subhny mb-2">Book Appointment With Our Doctors.</h6>
+            <h3 class="title-w3l two mb-3">Make an Appointment</h3>
+            <p class="mb-3">
+              We believe in providing the best possible care to all our existing patients and welcome new patients to
+              sample.</p>
+            
+    
+          </div>
+          <div class="col-lg-6 free-appointment pl-lg-5 mt-5">
+            <br><br><br>
+            <div class="appointment-form" >
+              <form action="#" method="post">
+                <div class="fields-grid">
+                  <div class="styled-input">
+
+                  
+
+                  <div class="styled-input">
+
+                    <div class="appointment-form-field">
+                      <div class="field">
+                      <input  type="date" name="adate" id="chdate" required></div>
+                  </div>
+                  </div>
+                  <div class="gap"></div>
+                  <div class="styled-input">
+
+                    <div class="appointment-form-field">
+
+                      <select id="department" name="department" onchange="myFunction()" required="Specialization">
+                        <option value="">Select</option>
+                        {% for i in data['appoin'] %}
+                        <option value="{{i['doc_id']}}">{{i['dot']}}</option>
+                        {% endfor %}
+
+                        <!-- <option value="">Specialization</option>
+                        <option value="">Cardiology</option>
+                        <option value="">Heart Surgery</option>
+                        <option value="">Skin Care</option>
+                        <option value="">Body Check-up</option>
+                        <option value="">Numerology</option>
+                        <option value="">Diagnosis</option>
+                        <option value="">Others</option> -->
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <div class="styled-input">
+
+                    <div class="appointment-form-field">
+
+                      <select id="doctor" required="Select Doctor">
+                        <option value="">Select Doctor</option>
+                        <option value="">Doctor 1</option>
+                        <option value="">Doctor 2</option>
+                        <option value="">Doctor 3</option>
+                        <option value="">Doctor 4</option>
+                        <option value="">Doctor 5</option>
+                        <option value="">Doctor 6</option>
+                        <option value="">Doctor 7</option>
+                      </select>
+                    </div>
+                  </div> -->
+
+                </div>
+                <div >
+                  <span>Select Time</span>
+                  <select name="t_box" id="appoinment" class="form-control">
+
+                  </select>
+                </div>
+                <div>
+                  <!-- <div style="width: 100%;">
+                    <button>hello</button>
+                  </div> -->
+                <div class="appointment-btn text-lg-right">
+           
+                  <button type="submit" name="booknow" class="btn btn-style btn-primary mt-4">Book Appointment</button>
+                </div>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    
+var select = document.getElementById("department");
+
+
+function myFunction() {
+    var dateVal = document.getElementById("chdate").value
+    var selectedOption = select.options[select.selectedIndex].value;
+    console.log(selectedOption);
+
+
+
+    
+          fetch('/select_timeslot', {
+            method: 'POST',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"selected":selectedOption,"date":dateVal})
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            arr = data;
+            var select2 = document.getElementById("appoinment")
+
+            select2.innerHTML=""
+
+            arr.forEach((newopt)=>{
+
+              var opt = document.createElement("option")
+              opt.innerText=newopt
+              opt.value=newopt
+              select2.appendChild(opt)
+
+            })
+     
+          })
+
+        }
+
+
+  </script>
+  <script>
+    //getting todays date
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1; //January is 0!
+                var yyyy = today.getFullYear();
+                
+                if (dd < 10) {
+                   dd = '0' + dd;
+                }
+                
+                if (mm < 10) {
+                   mm = '0' + mm;
+                } 
+                    
+                today = yyyy + '-' + mm + '-' + dd;
+           
+                console.log("today:"+today);         
+       
+    
+       //geting date after 60 days
+                var dt = new Date();
+                dt.setDate(dt.getDate() + 60);
+    
+    
+                var dd1 = dt.getDate();
+                console.log(dd1);
+                var mm1 = dt.getMonth() + 1; //January is 0!
+                var yyyy1 = dt.getFullYear();
+                
+                if (dd1 < 10) {
+                   dd1 = '0' + dd1;
+                }
+                
+                if (mm1 < 10) {
+                   mm1 = '0' + mm1;
+                } 
+                    
+                futuredate = yyyy1 + '-' + mm1 + '-' + dd1;
+                document.getElementById("chdate").setAttribute("max", futuredate);
+                console.log("future date:"+futuredate); 
+
+/////////////////////////////////////////////////////////////////////////////////
+                var ddddd = new Date();
+                ddddd.setDate(ddddd.getDate() + 1);
+    
+    
+                var dd1 = ddddd.getDate();
+                console.log(dd1);
+                var mm1 = ddddd.getMonth() + 1; //January is 0!
+                var yyyy1 = ddddd.getFullYear();
+                
+                if (dd1 < 10) {
+                   dd1 = '0' + dd1;
+                }
+                
+                if (mm1 < 10) {
+                   mm1 = '0' + mm1;
+                } 
+                    
+                nextday = yyyy1 + '-' + mm1 + '-' + dd1;
+                document.getElementById("chdate").setAttribute("min", nextday);
+
+
+
+    
+    </script>
+  {% include 'footer.html'%}

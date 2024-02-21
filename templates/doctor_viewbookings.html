@@ -1,0 +1,62 @@
+{% include 'doctorheader.html' %}
+
+<div class="banner-w3l-main">
+	<div class="w3l-banner-content">
+	  <div class="container">
+		<div class="bannerhny-info text-center">  
+		<form method="post" style="margin-top:200px;" >
+		<h1 align="center" style="font-family: times new roman;color: #fffffe;">APPOINTMENTS</h1>
+		<br>
+		<br>
+
+        {% if data['apppoooo']%}
+<table class="table" >
+	<tr>
+		
+		<TH>PATIENT NAME</TH>
+		<TH>APPOINTMENT DATE</TH>
+		<th>TIME</th>
+		<th>FEES</th>
+		
+		
+	
+		
+	</tr>
+	{% for row in data['apppoooo']%}
+	
+	<tr>
+		<td>{{row['doc_name']}}</td>
+		<td>{{row['adate']}}</td>
+		<td>{{row['t_box']}}</td>
+		<td>{{row['fees']}}</td>
+		
+		
+		{% endfor %}
+
+
+        {% else %}
+        <h1 style="font-family:times new roman;color:aqua">NO BOOKINGS YET</h1>
+
+        {% endif %}
+</table>
+</form>
+
+<style type="text/css">
+	tr,td,th{
+		border: 0px !important;
+	}
+
+	.table{
+		width: 1000px !important;
+		color: #fffffe;
+		position: relative;
+		right: 11rem;
+	}
+	tr:nth-child(odd){
+		background-color: rgba(0, 0, 0, .3);
+	}
+</style>
+</div>
+</div>
+<br><br>
+{% include 'footer.html' %}

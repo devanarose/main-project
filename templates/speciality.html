@@ -1,0 +1,32 @@
+{% include 'publicheader.html' %}
+
+<div class="banner-w3l-main">
+    <div class="w3l-banner-content">
+      <div class="container">
+        <div class="bannerhny-info text-center" style="margin-top: 150px;">
+          
+          
+<br><br>
+          <div >
+            <h1 style="color: whitesmoke;">{{data['sp']}}</h1>
+              {% for row in data['doc'] %}
+              
+              <div style="margin-top: 50px;background: rgba(0, 0, 0, .4);display:flex ;justify-content: flex-start;gap: 20px;padding: 20px;border-radius: 10px;width: 900px !important;position: relative;right: 150px;">
+                <div>
+                  <img src="/{{ row['image'] }}" width="220" height="220" alt="">
+                  
+                  <span style="color: whitesmoke; font-family:'Times New Roman';font-size:20px;">{{ row['doc_name'] }}</span>
+                </div>
+
+                <span style="color: whitesmoke;overflow: hidden;">{{ row['description'] }}</span>
+              </div>
+              {% endfor %}
+            </div>
+        </form>
+             
+</div>
+</div>
+</div>
+</div>
+
+{% include 'footer.html' %}

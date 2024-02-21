@@ -1,0 +1,84 @@
+{% include 'adminheader.html' %}
+
+<div class="banner-w3l-main">
+	<div class="w3l-banner-content">
+	  <div class="container">
+		<div class="bannerhny-info text-center">
+			<div>
+
+				
+			</div>  
+
+			
+		<form method="post" style="margin-top:200px;" >
+
+			<h1 align="center" style="font-family: times new roman;color: #fffffe;">PATIENT REPORT</h1>
+
+			<div><input type="text" placeholder="search here...." name="search">
+				<input type="submit" class="btn btn-info" name="btn"></div>
+		
+		<br>
+	
+		<br>
+<table class="table" >
+	<tr>
+		<!-- <TH>Patient ID</TH> -->
+		<th>PATIENT ID</th>
+		<TH>FIRST NAME</TH>
+		<TH>LAST NAME</TH>
+		<th>DOB</th>
+		<th>GENDER</th>
+		<th>HOUSENAME</th>
+		<th>DISTRICT</th>
+		<th>PIN</th>
+		<th>PHONE</th>
+		<th>STATUS</th>
+		<th>VIEW BOOKINGS</th>
+		
+	</tr>
+	{% for row in data['patientview']%}
+	<tr>
+		<!-- <td>PAT0{{ loop.index }}</td> -->
+		<TD>{{row['rid']}}</TD>
+		<td>{{row['patient_fname']}}</td>
+		<td>{{row['patient_lname']}}</td>
+		<td>{{row['p_dob']}}</td>
+		<td>{{row['p_gender']}}</td>
+		<td>{{row['patient_hname']}}</td>
+		<td>{{row['patient_district']}}</td>
+		<td>{{row['patient_pin']}}</td>
+		<td>{{row['patient_phno']}}</td>
+
+		{% if row['status']=="0"%}
+		
+		<td><a href="?action=active&pid={{row['patient_id']}}">Active</a></td>
+
+		{%elif row['status']=="1"%}
+		<td><a href="?action=inactive&pid={{row['patient_id']}}">InActive</a></td>
+		{% endif %}
+		<td><a class="btn btn-info" href="admin_viewbookings?pid={{row['patient_id']}}">View Bookings</a></td>
+	</tr>
+	{% endfor %}
+</table>
+</form>
+<a style="width: 150px" class="btn btn-info" href="patient_report"><b>Print Report</b></a>
+
+<style type="text/css">
+	tr,td,th{
+		border: 0px !important;
+	}
+
+	.table{
+		width: 1005px !important;
+		color: #fffffe;
+		position: relative;
+		right: 11rem;
+	}
+	tr:nth-child(odd){
+		background-color: rgba(0, 0, 0, .3);
+	}
+</style>
+</div>
+</div>
+<br><br>
+{% include 'footer.html' %}

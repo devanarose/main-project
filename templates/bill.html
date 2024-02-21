@@ -1,0 +1,107 @@
+
+
+<head>
+
+	<script>
+		function displayDateTime() {
+			var today = new Date();
+			var date = today.toDateString();
+			var time = today.toLocaleTimeString();
+			document.getElementById("datetime").innerHTML = date + " " + time;
+		}
+	</script>
+</head>
+		<body onload="printDiv(); displayDateTime();">
+    <div id="div_print" >
+        <center>
+            <link rel="stylesheet" href="static/assets/css/style-starter.css">
+            <font style="font-family:times new roman">
+            <h1 style="color: #31a2b1;"><b>MEDICK EYE HOSPITAL<b></h1>
+                <p>
+                    Medick Private Limited ,
+                    near panampilly park,
+                    kadavanthara 682020 <br><br>
+                          <strong>Phone:</strong> +911234567890<br> 
+                          <strong>Email:</strong> medick@mail.com<br> 
+                        </p> 
+            <h1 style="padding-top: 30px;font-size: 40px;color:#0e8b8b">INVOICE</h1><br>
+            <!-- <h1>View Sales</h1> -->
+<!-- <table border=1 class="table table-secondary table-striped " style="width: 1000px;color: black;background:white;opacity: 0.85;"> -->
+    {% for row in data['book']%}
+    <tr>
+      <th>Bill No:</th>
+      <td><span id="bill-number"></span></td>
+    </tr><br>
+    <tr>
+      <th>Patient ID: </th>
+      <td>{{row['rid']}}</td>
+    </tr><br>
+    <tr>
+        <th>PATIENT NAME:</th>
+        <TD>{{row['patient_fname']}}</TD><br>
+    </tr>
+    <tr>
+        <th>PHONE NUMBER:</th>
+        <TD>{{row['patient_phno']}}</TD>
+    </tr><br>
+    
+    <tr>
+      <th> BILL DATE AND TIME: </th>
+      <TD><span id="datetime"></span></TD>
+    </tr> 
+<!-- </table> -->
+    {%endfor%}
+    <table border=1 class="table table-secondary table-striped " style="width: 1000px;color: black;background:white;opacity: 0.85;">
+
+
+      <script>
+        var billNumber = Math.floor(Math.random() * 1000000) + 1;
+        document.getElementById("bill-number").innerHTML = billNumber;
+      </script>
+
+
+<script> 
+    function printDiv() { 
+      var divContents = document.getElementById("div_print").innerHTML; 
+      var a = window.open('', '', 'height=500, width=500'); 
+      a.document.write(divContents); 
+      a.document.close(); 
+      a.print(); 
+    } 
+  </script>
+        <TH>DOCTOR</TH>
+		<TH>APPOINTMENT DATE</TH>
+		<th>TIME</th>
+		<th>FEES</th>
+    <th>PAYMENT STATUS</th>
+		
+                
+                
+            </tr>
+            
+        
+
+		{% for row in data['book']%}
+	<tr>
+		<td>{{row['doc_name']}}</td>
+		<td>{{row['adate']}}</td>
+		<td>{{row['t_box']}}</td>
+		<td>{{row['fees']}}</td>
+    <td>{{row['status']}}</td>
+            </tr>
+            {% endfor %}
+    </table></font></center></div>
+
+<script> 
+    function printDiv() { 
+      var divContents = document.getElementById("div_print").innerHTML; 
+      var a = window.open('', '', 'height=500, width=500'); 
+      a.document.write(divContents); 
+      a.document.close(); 
+      a.print(); 
+    } 
+  </script>
+
+  <p style="padding-left: 1000px;color: black;font-family:times new roman"><b>Authorised Signature</b></p>
+            <img style="padding-left: 1000px;" src="static/image/signature.jpg" height="100">
+

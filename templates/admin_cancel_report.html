@@ -1,0 +1,83 @@
+{% include 'adminheader.html' %}
+
+<div class="banner-w3l-main">
+	<div class="w3l-banner-content">
+	  <div class="container">
+		<div class="bannerhny-info text-center">
+			<div>
+
+				
+			</div>  
+            <BR><BR><br><br><br>
+			<h1 align="center" style="font-family: times new roman;color: #fffffe;">CANCELLATION REPORT</h1>
+<center> <br><br><br>
+
+            <form method="post">
+                <table style="color: black;width: 100px">
+            
+              
+                    <td style="color: white"><input type="date" name="daily" > DAILY </td>
+                     <td  style="color: white"> <input type="month" name="monthly"> MONTHLY </td>
+                     <td  style="color: white"> <input type="text" name="customer" placeholder="Search by Doctor"> Doctor </td>
+             
+                  <tr>
+                    <td align="center" colspan="5"><input type="submit" name="sale" class="btn btn-info" value="SEARCH"></td>
+                   </tr>
+                 
+                </center></div></div></div></div></form>
+                   </tr>
+		<br>
+	<br><br></div></div></div></div>
+		<br>
+		{% if data['report']%}
+<table class="table" style="font-family: times new roman;"  >
+	<tr>
+		<TH>PATIENT ID</TH>
+		<TH>PATIENT NAME</TH>
+        <TH>DOCTOR</TH>
+		<TH>APPOINTMENT DATE</TH>
+		<th>TIME</th>
+        <TH>REFUND AMOUNT</TH>
+		
+	</tr>
+	{% for row in data['report']%}
+	<tr>
+
+		<td>{{row['rid']}}</td>
+		<td>{{row['patient_fname']}}</td>
+		<td>{{row['doc_name']}}</td>
+		<td>{{row['adate']}}</td>
+		<td>{{row['t_box']}}</td>
+		<td>{{row['refund']}}</td>
+		
+
+		
+	</tr>
+	{% endfor %}
+	{% else %}
+        <h1 style="font-family:times new roman;color:aqua">NO CANCELLATIONS YET</h1>
+		{% endif %}
+	
+</table>
+</form>
+<a style="width: 150px" class="btn btn-info" href="cancel_report"><b>Print Report</b></a>
+
+<style type="text/css">
+	tr,td,th{
+		border: 0px !important;
+	}
+
+	.table{
+		width: 1000px !important;
+		color: #fffffe;
+		position: relative;
+		right: 11rem;
+	}
+	tr:nth-child(odd){
+		background-color: rgba(0, 0, 0, .3);
+	}
+</style>
+</div>
+</div>
+<br><br>
+{% include 'footer.html' %}

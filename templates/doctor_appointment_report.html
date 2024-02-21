@@ -1,0 +1,128 @@
+{% include 'doctorheader.html' %}
+
+<div class="banner-w3l-main">
+	<div class="w3l-banner-content">
+	  <div class="container">
+		<div class="bannerhny-info text-center">  
+		<form method="post" style="margin-top:95px;" >
+		<h1 align="center" style="font-family: times new roman;color: #fffffe;">APPOINTMENTS</h1>
+		<br>
+		<br>
+		<center>
+				
+  <form method="post">
+    <table style="color: black;width: 100px">
+
+  
+		<td style="color: white"><input type="date" name="daily" > DAILY </td>
+		 <td  style="color: white"> <input type="month" name="monthly"> MONTHLY </td>
+		 <td  style="color: white"> <input type="text" name="customer" placeholder="Search by Patient id"> PATIENT ID </td>
+
+	  <tr>
+		<td align="center" colspan="5"><input type="submit" name="sale" class="btn btn-info" value="SEARCH"></td>
+	   </tr>
+	 
+ 
+	   </tr>
+	
+			</form>
+			</table>
+
+			</center>
+		</div>
+		</form>
+		<!-- </div>
+	  </div> -->
+	<!-- </div>
+</div> -->
+
+</div></div></div>
+<center>
+	<!-- <h2><a onclick="print()" class="btn btn-info">print</a></h2> -->
+<h1 style="font-family:times new roman">View Report</h1>
+<br>
+
+<!-- <h2><a class="btn btn-info" href="admin_salesreport">print</a></h2> -->
+<style>
+	@media print{
+		body, body *{
+			visibility: hidden;
+		}
+
+		#printsec,#printsec *{
+			visibility: visible !important;
+		}
+	}
+</style>
+{% if data['report']%}
+<table class="table" id="printsec"  >
+	<tr>
+		<th>PATIENT ID</th>
+		<TH>PATIENT NAME</TH>
+		<TH>APPOINTMENT DATE</TH>
+		<th>TIME</th>
+		<th>FEES</th>
+		<th>BOOKING STATUS</th>
+		<th>PRESCRIPTION</th>
+		<th></th>
+		<th></th>
+		
+		
+	</tr>
+	{% for row in data['report']%}
+	
+	<tr>
+		
+		<TD>{{row['rid']}}</TD>
+		<td>{{row['patient_fname']}}</td>
+		<td id="apDate" >{{row['adate']}}</td>
+		<td>{{row['t_box']}}</td>
+		<td>{{row['fees']}}</td>
+		<TD>{{row['status']}}</TD>
+		<td>{{row['history']}}</td>
+		<td><input type="hidden" id="DataCount" value="{{row['adate']}}"></td>
+		<td><input type="hidden" value="{{ row['adate'] }}" name="" id="ap{{ loop.index }}"></td>
+		
+		<td><a name="prescription" id="btn{{ loop.index }}" style="width: 150px" class="btn btn-info" href="prescription?adate={{row['adate']}}&apid={{row['ap_id']}}"><b>PRESCRIPTION</b></a></td>
+
+
+		<!-- <td><button disabled>cannot add prescription</button></td> -->
+		<!-- <td><a href="doctor_viewbookings?pid={{ row['patient_id'] }}">Previous History</a></td> -->
+		
+		
+	</tr>
+	{% endfor %}
+		
+        {% else %}
+        <h1 style="font-family:times new roman;color:rgb(17, 158, 158)">NO BOOKINGS YET</h1>
+
+        {% endif %}
+</table>
+<input type="hidden" value="{{ data['len'] }}" name="" id="count">
+</center>
+<style type="text/css">
+	tr,td,th{
+		border: 0px !important;
+	}
+
+	.table{
+		width: 1000px !important;
+		color: #000000;
+		position: relative;
+		font-family:times new roman
+	
+	}
+	tr:nth-child(odd){
+		background-color: rgba(0, 0, 0, .3);
+	}
+</style>
+</div>
+</div>
+<br><br>
+
+<script>
+	
+	
+
+</script>
+{% include 'footer.html' %}

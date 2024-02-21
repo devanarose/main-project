@@ -1,0 +1,59 @@
+<body onload="printDiv()">
+    <div id="div_print" >
+        <center>
+            <link rel="stylesheet" href="static/assets/css/style-starter.css">
+            <font style="font-family:times new roman">
+            <h1 style="color: #3ccadd;"><b>MEDICK EYE HOSPITAL<b></h1>
+                <p>
+                    Medick Private Limited ,
+                    near panampilly park,
+                    kadavanthara 682020 <br><br>
+                          <strong>Phone:</strong> +911234567890<br> 
+                          <strong>Email:</strong> medick@mail.com<br> 
+                        </p> 
+            <h1 style="padding-top: 30px;font-size: 60px;">STAFF REPORT</h1><br>`
+            <!-- <h1>View Sales</h1> -->
+<table border=1 class="table table-secondary table-striped " style="width: 1000px;color: black;background:white;opacity: 0.85;">
+    <tr align="left">
+		
+        <TH>FIRST NAME</TH>
+		<TH>LAST NAME</TH>
+		<th>DOB</th>
+		<th>HOUSENO.</th>
+		<th>HOUSENAME</th>
+		<th>DISTRICT</th>
+		<th>PIN</th>
+		<th>GENDER</th>
+		<th>PHONE</th>
+		
+                
+                
+            </tr>
+            
+            {% for row in data['staffview']%}
+	<tr>
+		<td>{{row['staff_fname']}}</td>
+		<td>{{row['staff_lname']}}</td>
+		<td>{{row['staff_dob']}}</td>
+		<td>{{row['staff_hno']}}</td>
+		<td>{{row['staff_hname']}}</td>
+		<td>{{row['staff_district']}}</td>
+		<td>{{row['staff_pin']}}</td>
+		<td>{{row['staff_gender']}}</td>
+		<td>{{row['staff_phno']}}</td>
+            </tr>
+            {% endfor %}
+
+
+
+
+
+<script> 
+    function printDiv() { 
+      var divContents = document.getElementById("div_print").innerHTML; 
+      var a = window.open('', '', 'height=500, width=500'); 
+      a.document.write(divContents); 
+      a.document.close(); 
+      a.print(); 
+    } 
+  </script>

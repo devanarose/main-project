@@ -1,0 +1,335 @@
+{% include 'adminheader.html' %}
+	<div class="banner-w3l-main">
+		<div class="w3l-banner-content">
+		  <div class="container">
+			<div class="bannerhny-info text-center">
+			<form method="post" style="margin-top:200px;" enctype="multipart/form-data" >
+	{% if data['up']%}
+
+				<h1 align="center" style="font-family: times new roman;color: #fffffe;">UPDATE DOCTOR</h1>
+		<table align="center"  class="table" style="width:600px; color: #fffffe; font-family: times new roman"  >
+		<br>
+		<BR>
+		
+		
+		<tr>
+			<th>Name</th>
+			<td><input type="text" required="" name="name" value="{{data['up'][0]['doc_name']}}" maxlength="15" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>DOB</th>
+			<td><input type="date" required="" name="d_dob" value="{{data['up'][0]['doc_dob']}}" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Specialization</th>
+			<td><input type="text" required="" name="speci" value="{{data['up'][0]['doc_specialization']}}" maxlength="40" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td><input type="text" required="" name="des" value="{{data['up'][0]['description']}}" maxlength="1000" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Starting Time Slot</th>
+			<td><input type="time" required="" name="st_slot" value="{{data['up'][0]['st_slot']}}" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Ending Time Slot</th>
+			<td><input type="time" required="" name="et_slot" value="{{data['up'][0]['et_slot']}}" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Fees</th>
+			<td><input type="number" required="" name="fees" value="{{data['up'][0]['fees']}}" maxlength="3" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>House Name</th>
+			<td><input type="text" required="" name="hname" value="{{data['up'][0]['doc_hname']}}" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+			<th>District</th>
+			<td>
+			<select name="District" id="district" value="{{data['up'][0]['doc_district']}}" class="form-control" style="opacity: 0.7">
+				<option value="Select">Select Option</option>
+				<option value="Ernakulam">Ernakulam</option>
+                <option value="Trivandrum">Trivandrum</option>
+                <option value="Thrissur">Thrissur</option>
+                <option value="Alappuzha">Alappuzha</option>
+                <option value="Kasaragod">Kasaragod</option>
+                      <option value="Kozhikode">Kozhikode</option>
+                         <option value="Kannur">Kannur</option>
+                            <option value="Wayanad">Wayanad</option>
+                               <option value="Palakkad">Palakkad</option>
+                               <option value="Idukki">Idukki</option>
+                               <option value="Kottayam">Kottayam</option>
+                               <option value="Pathanamthitta">Pathanamthitta</option>
+                               <option value="Malappuram">Malappuram</option>
+                               <option value="Kollam">Kollam</option>
+			</select></td>
+		</tr>
+		<tr>
+			<th>Pin Code</th>
+			<td><input type="text" pattern=[0-9]{6} required="" name="pincode" value="{{data['up'][0]['doc_pin']}}" maxlength="6" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Gender</th>
+			<td><input type="text" required="" name="doc_gender" value="{{data['up'][0]['doc_gender']}}" class="form-control" style="opacity: 0.7"></td>
+		</tr>	
+		<tr>
+			<th>Phone number</th>
+			<td><input type="text" pattern=[0-9]{10} required="" name="phno" value="{{data['up'][0]['doc_phno']}}" maxlength="10" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Total No. Of Patients</th>
+			<td><input type="number" required="" name="nop" maxlength="1" value="{{data['up'][0]['max_p']}}" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		
+		
+		<tr>
+			<!--th>Date of check in</th>
+			<td><input type="Date" name="" class="form-control"></td>
+		</tr>
+		<tr>
+			<th>Date of check out</th>
+			<td><input type="Date" name="" class="form-control"></td>
+		</tr-->
+		<tr>
+			<td colspan="2"><center><input type="submit" name="updatedoctor" value="UPDATE" class="btn btn-info"></center></td>
+			
+		</tr>
+		</tr>
+		</table>
+	{%else%}
+
+		<h1 align="center" style="font-family: times new roman;color: #fffffe;">DOCTOR REGISTRATION</h1>
+		<table align="center"  class="table" style="width:600px; color: #fffffe; font-family: times new roman"  >
+		<br>
+		<BR>
+		
+		<tr>
+			<th>Email ID</th>
+			<td><input type="text" required="" name="email" maxlength="30" class="form-control" style="opacity: 0.7"></td>
+			<span style="color: rgb(253, 83, 83)" id="eerror1">Please enter valid Email!</span>
+			</tr>
+		<tr>
+			<th>Name</th>
+			<td><input type="text" required="" name="name" maxlength="30" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>DOB</th>
+			<td><input type="date" max="2000-12-31" required="" name="d_dob" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Specialization</th>
+			<td><input type="text" required="" name="speci" maxlength="40" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td><input type="text" required="" name="des" maxlength="1000" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Starting Time Slot</th>
+			<td><input type="time" required="" name="st_slot" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Ending Time Slot</th>
+			<td><input type="time" required="" name="et_slot" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Fees</th>
+			<td><input type="number" required="" name="fees" maxlength="3" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>House Name</th>
+			<td><input type="text" required="" name="hname" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+			<th>District</th>
+			<td>
+			<select name="District" id="district" class="form-control" style="opacity: 0.7">
+				<option value="Select">Select Option</option>
+				<option value="Ernakulam">Ernakulam</option>
+                <option value="Trivandrum">Trivandrum</option>
+                <option value="Thrissur">Thrissur</option>
+                <option value="Alappuzha">Alappuzha</option>
+                <option value="Kasaragod">Kasaragod</option>
+                      <option value="Kozhikode">Kozhikode</option>
+                         <option value="Kannur">Kannur</option>
+                            <option value="Wayanad">Wayanad</option>
+                               <option value="Palakkad">Palakkad</option>
+                               <option value="Idukki">Idukki</option>
+                               <option value="Kottayam">Kottayam</option>
+                               <option value="Pathanamthitta">Pathanamthitta</option>
+                               <option value="Malappuram">Malappuram</option>
+                               <option value="Kollam">Kollam</option>
+			</select></td>
+		</tr>
+		<tr>
+			<th>Pin Code</th>
+			<td><input type="text" pattern=[0-9]{6} required="" name="pincode" maxlength="6" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Gender</th>
+			<td><input type="text" required="" name="doc_gender" class="form-control" style="opacity: 0.7"></td>
+		</tr>	
+		<tr>
+			<th>Phone number</th>
+			<td><input type="text" pattern=[0-9]{10} required="" name="phno" maxlength="10" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Total No. Of Patients</th>
+			<td><input type="number" required="" name="nop" maxlength="1" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<th>Image</th>
+			 <td><input type="file" required="" name="imgg" class="form-control" style="opacity: 0.7;height: 45px; font-size: 10px"></td> 
+                <tr>
+           
+            
+		</tr>
+		<tr>
+			<th>Password</th>
+			<td><input type="password" name="password" required="" class="form-control" style="opacity: 0.7"></td>
+		</tr>
+		<tr>
+			<!--th>Date of check in</th>
+			<td><input type="Date" name="" class="form-control"></td>
+		</tr>
+		<tr>
+			<th>Date of check out</th>
+			<td><input type="Date" name="" class="form-control"></td>
+		</tr-->
+		<tr>
+			<td colspan="2"><center><input type="submit" name="doctor" value="Register" class="btn btn-info"></center></td>
+			
+		</tr>
+	</tr>
+	</table>
+	{%endif%}
+</font></form>
+<style type="text/css">
+	tr,td,th{
+		border: 0px !important;
+	}
+</style>
+</div>
+</div>
+<form method="post" style="margin-top:200px;" >
+	<h1 align="center" style="font-family: times new roman;color: #fffffe;">VIEW DOCTOR</h1>
+<br><br>
+<table class="table" align="center" style="color: #fffffe;width:300px;font-size:12px;	">
+	<tr>
+		
+		<TH>NAME</TH>
+		<th>DOB</th>
+		<th>SPECIALIZATION</th>
+		<th>STARTING TIME</th>
+		<th>ENDING TIME</th>
+		<th>FEES</th>
+		<th>HOUSENAME</th>
+		<th>DISTRICT</th>
+		<th>PIN</th>
+		<th>GENDER</th>
+		<th>PHONE</th>
+		<th>NOP</th>
+		<th>IMAGE</th>
+		<th>STATUS</th>
+		<th>UPDATE</th>
+		
+	</tr>
+	{% for row in data['doctorview']%}
+	<tr>
+		<td>{{row['doc_name']}}</td>
+		<td>{{row['doc_dob']}}</td>
+		<td>{{row['doc_specialization']}}</td>
+		
+		<td>{{row['st_slot']}}</td>
+		<td>{{row['et_slot']}}</td>
+		<td>{{row['fees']}}</td>
+		<td>{{row['doc_hname']}}</td>
+		<td>{{row['doc_district']}}</td>
+		<td>{{row['doc_pin']}}</td>
+		<td>{{row['doc_gender']}}</td>
+		<td>{{row['doc_phno']}}</td>
+		<td>{{row['max_p']}}</td>
+		<td><img src="/{{row['image']}}" alt=""></td>
+		{% if row['doc_status']=="0"%}
+		
+		<td><a href="?action=active&did={{row['doc_id']}}">Active</a></td>
+
+		{%elif row['doc_status']=="1"%}
+		<td><a href="?action=inactive&did={{row['doc_id']}}">InActive</a></td>
+		{% endif %}
+		<td><a href="?action=update&did={{row['doc_id']}}">Update</a></td>
+	{%endfor%}
+	</tr>
+</table>
+<br>
+<center>
+<a style="width: 150px" class="btn btn-info" href="doctor_report"><b>Print Report</b></a>
+</center>
+<br><br>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(function() {
+        $("input[name='name']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+        });
+        $("input[name='speci']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+		$("input[name='des']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+		$("input[name='doc_gender']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+        });
+        // $("input[name='dob']").on('input', function(e) {
+        //     $(this).val($(this).val().replace(/[^0-9/]/g, ''));
+
+        // });
+        
+		$("input[name='fees']").on('input', function(e) {
+			$(this).val($(this).val().replace(/[^0-9]/g, ''));
+			  
+		  });
+        $("input[name='phno']").on('input', function(e) {
+          $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+        $("input[name='pincode']").on('input', function(e) {
+          $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+		
+        $("input[name='email']").on('input', function(e) {
+              var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{1,}/.test(this.value);
+                if(!re) {
+                    $('#eerror1').show();
+                    $('#btn').prop('disabled', true);
+                    console.log("err");
+                } else {
+                    $('#btn').prop('disabled', false);
+                    $('#eerror1').hide();
+                    console.log("err");
+                }
+
+        });
+        
+        $("input[name='hname']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z0-9()/. ]/g, ''));
+
+        });
+        
+          
+        $("input[name='password']").on('input', function(e) {
+          $(this).val($(this).val().replace(/[^0-9A-Za-z@/. ]/g, ''));
+            
+        });
+    });
+
+
+</script>
+
+
+{% include 'footer.html' %}
